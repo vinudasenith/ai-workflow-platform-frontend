@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import RegisterPage from './pages/register/register';
 import LoginPage from './pages/login/login';
 import UserLogin from './pages/login/userLogin';
+import UserRegister from './pages/register/userRegister';
 
 
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/ulogin" element={<UserLogin />}></Route>
+        <Route path="/uregister" element={<UserRegister />}></Route>
       </Routes>
     </BrowserRouter>
   )
