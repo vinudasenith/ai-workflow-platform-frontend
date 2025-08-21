@@ -1,4 +1,30 @@
+import { useState } from "react"
+import { toast } from "react-hot-toast"
+import api from "../../api/axios"
+
 export default function UserLogin() {
+    //state variables
+    const [organizationName, setOrganizationName] = useState('');
+    const [role, setRole] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //handle submit for user login
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        console.log({ organizationName, role, email, password });
+        api.post("/user/login", {
+            organizationName: organizationName,
+            role: role,
+            email: email,
+            password: password
+        }).then((res) => {
+            toast.success("User logged in successfully");
+        }).catch((err) => {
+            toast.error("Something went wrong");
+        })
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 px-4">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -8,16 +34,18 @@ export default function UserLogin() {
                 </div>
 
                 <div className="bg-white py-8 px-6 shadow-lg sm:rounded-lg sm:px-10 border border-gray-200">
-                    <form className="space-y-6">
+                    <form onSubmit={handleOnSubmit} className="space-y-6">
                         {/* Organization Selection */}
                         <div>
                             <label htmlFor="organization" className="block text-sm font-medium text-gray-700">Organization *</label>
-                            <select
+                            <input
                                 id="organization"
+                                value={organizationName}
+                                onChange={(e) => setOrganizationName(e.target.value)}
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Enter organization name"
                             >
-                                <option value="">Select Organization</option>
-                            </select>
+                            </input>
                         </div>
 
                         {/* Role Selection */}
@@ -26,8 +54,9 @@ export default function UserLogin() {
                             <select
                                 id="role"
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
                             >
-                                <option value="OrgAdmin">Organization Admin / Owner</option>
                                 <option value="DepartmentAdmin">Department Heads / Managers</option>
                                 <option value="Staff">Staff / Employees</option>
                                 <option value="User">Users / General Members</option>
@@ -40,6 +69,8 @@ export default function UserLogin() {
                             <input
                                 id="email"
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your.email@example.com"
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
@@ -50,6 +81,8 @@ export default function UserLogin() {
                             <input
                                 id="password"
                                 type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Enter password"
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
