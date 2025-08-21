@@ -1,25 +1,32 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import api from "../../api/axios"
+import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
     //state variables
     const [organizationName, setOrganizationName] = useState('');
-    const [role, setRole] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     //handle submit for user login
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log({ organizationName, role, email, password });
+        console.log({ organizationName, email, password });
         api.post("/user/login", {
             organizationName: organizationName,
-            role: role,
             email: email,
             password: password
         }).then((res) => {
             toast.success("User logged in successfully");
+
+            const { token, tenantId, role } = res.data
+            localStorage.setItem("token", token)
+            localStorage.setItem("tenantId", tenantId)
+            localStorage.setItem("role", role)
+
+            navigate(`/dashboard/${tenantId}`)
         }).catch((err) => {
             toast.error("Something went wrong");
         })
@@ -47,22 +54,6 @@ export default function UserLogin() {
                             >
                             </input>
                         </div>
-
-                        {/* Role Selection */}
-                        <div>
-                            <label htmlFor="role" className="block text-sm font-medium text-gray-700">Role *</label>
-                            <select
-                                id="role"
-                                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
-                            >
-                                <option value="DepartmentAdmin">Department Heads / Managers</option>
-                                <option value="Staff">Staff / Employees</option>
-                                <option value="User">Users / General Members</option>
-                            </select>
-                        </div>
-
                         {/* Email & Password */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
