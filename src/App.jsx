@@ -5,6 +5,8 @@ import UserLogin from './pages/login/userLogin';
 import UserRegister from './pages/register/userRegister';
 import { Toaster } from 'react-hot-toast'
 import Dashboard from './pages/dashboard/dashboard';
+import AdminDashboard from './pages/admin-dashboard/adminDashboard';
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
         <Route path="/ulogin" element={<UserLogin />}></Route>
         <Route path="/uregister" element={<UserRegister />}></Route>
         <Route path="/dashboard/:tenantId" element={<Dashboard />}></Route>
+        <Route path="/admin/dashboard" element={<AdminDashboard />}></Route>
       </Routes>
     </BrowserRouter>
   )
