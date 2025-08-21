@@ -1,4 +1,29 @@
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import api from "../../api/axios";
+
 export default function LoginPage() {
+    //state variables
+    const [name, setName] = useState('')
+    const [ownerEmail, setOwnerEmail] = useState('')
+    const [ownerPassword, setOwnerPassword] = useState('')
+
+    //handle submit for organization login
+    function handleOnSubmit(e) {
+        e.preventDefault();
+        console.log(ownerEmail, ownerPassword);
+        api.post("/organizations/login", {
+            name: name,
+            ownerEmail: ownerEmail,
+            ownerPassword: ownerPassword
+        }).then((res) => {
+            toast.success("Organization logged in successfully");
+        }).catch((err) => {
+            toast.error("Something went wrong");
+        })
+    }
+
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
             <div className="max-w-5xl mx-auto">
@@ -18,7 +43,7 @@ export default function LoginPage() {
                             Enter your credentials to access your organization workspace
                         </p>
 
-                        <form className="space-y-6">
+                        <form onSubmit={handleOnSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="organization" className="block text-sm font-medium text-gray-700">
                                     Organization Name
@@ -26,6 +51,8 @@ export default function LoginPage() {
                                 <input
                                     id="organization"
                                     type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your organization name"
                                     className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
@@ -38,6 +65,8 @@ export default function LoginPage() {
                                 <input
                                     id="email"
                                     type="email"
+                                    value={ownerEmail}
+                                    onChange={(e) => setOwnerEmail(e.target.value)}
                                     placeholder="Enter your email address"
                                     className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
@@ -50,6 +79,8 @@ export default function LoginPage() {
                                 <input
                                     id="password"
                                     type="password"
+                                    value={ownerPassword}
+                                    onChange={(e) => setOwnerPassword(e.target.value)}
                                     placeholder="Enter your password"
                                     className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
