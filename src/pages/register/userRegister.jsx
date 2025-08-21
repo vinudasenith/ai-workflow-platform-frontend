@@ -1,4 +1,35 @@
+import { useState } from "react"
+import { toast } from "react-hot-toast"
+import api from "../../api/axios"
+
 export default function UserRegister() {
+
+    //state variables
+    const [organizationName, setOrganizationName] = useState('');
+    const [role, setRole] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //handle submit for user registration
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        console.log({ organizationName, role, firstName, lastName, email, password });
+        api.post("/user/register", {
+            organizationName: organizationName,
+            role: role,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        }).then((res) => {
+            toast.success("User registered successfully");
+        }).catch((err) => {
+            toast.error("Something went wrong");
+        })
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 px-4">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -10,20 +41,21 @@ export default function UserRegister() {
                 </div>
 
                 <div className="bg-white py-8 px-6 shadow-lg sm:rounded-lg sm:px-10 border border-gray-200">
-                    <form className="space-y-6">
+                    <form onSubmit={handleOnSubmit} className="space-y-6">
                         {/* Organization Selection */}
                         <div>
                             <label htmlFor="organization" className="block text-sm font-medium text-gray-700">
                                 Organization *
                             </label>
-                            <select
+                            <input
                                 id="organization"
+                                placeholder="Enter your organization name"
+                                value={organizationName}
+                                onChange={(e) => setOrganizationName(e.target.value)}
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             >
-                                <option value="">Select Organization</option>
-                                <option value="org1">Organization 1</option>
-                                <option value="org2">Organization 2</option>
-                            </select>
+
+                            </input>
                         </div>
 
                         {/* Role Selection */}
@@ -34,22 +66,37 @@ export default function UserRegister() {
                             <select
                                 id="role"
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
                             >
                                 <option value="">Select Role</option>
-                                <option value="user">User</option>
-                                <option value="officer">Officer</option>
-                                <option value="departmentHead">Department Head</option>
-                                <option value="student">Student</option>
+                                <option value="User">User</option>
+                                <option value="Staff">Staff</option>
+                                <option value="DepartmentAdmin">Department Head</option>
                             </select>
                         </div>
 
                         {/* Personal Details */}
                         <div>
-                            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name *</label>
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
                             <input
-                                id="fullName"
+                                id="firstName"
                                 type="text"
-                                placeholder="Enter your full name"
+                                placeholder="Enter your first name"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
+                            <input
+                                id="lastName"
+                                type="text"
+                                placeholder="Enter your last name"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
                         </div>
@@ -60,6 +107,8 @@ export default function UserRegister() {
                                 id="email"
                                 type="email"
                                 placeholder="your.email@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
                         </div>
@@ -70,6 +119,8 @@ export default function UserRegister() {
                                 id="password"
                                 type="password"
                                 placeholder="Enter password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
                         </div>
