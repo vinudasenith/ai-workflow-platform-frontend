@@ -1,4 +1,46 @@
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import api from "../../api/axios";
 export default function RegisterPage() {
+    //state variables
+    const [name, setName] = useState('');
+    const [industry, setIndustry] = useState('');
+    const [organizationSize, setOrganizationSize] = useState('');
+    const [ownerName, setOwnerName] = useState('');
+    const [ownerEmail, setOwnerEmail] = useState('');
+    const [ownerPassword, setOwnerPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+
+
+    //handle submit for organization registration
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+
+        //validation for making all fields required
+        if (!name || !industry || !organizationSize || !ownerName || !ownerEmail || !ownerPassword || !phoneNumber) {
+            toast.error("All fields are required");
+            return;
+        }
+
+        console.log({ ownerEmail, ownerPassword, ownerName, name, industry, organizationSize, phoneNumber });
+        api.post("/organizations/register", {
+            name: name,
+            industry: industry,
+            organizationSize: organizationSize,
+            ownerName: ownerName,
+            ownerEmail: ownerEmail,
+            ownerPassword: ownerPassword,
+            phoneNumber: phoneNumber
+
+        }).then((res) => {
+            toast.success("Organization registered successfully");
+
+        }).catch((err) => {
+            toast.error("Something went wrong");
+        })
+
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
             <div className="max-w-5xl mx-auto">
@@ -18,16 +60,18 @@ export default function RegisterPage() {
                             Fill out the form below to get started with your organization account
                         </p>
 
-                        <form className="space-y-6">
+                        <form onSubmit={handleOnSubmit} className="space-y-6">
                             {/* Organization Details */}
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-gray-800">Organization Details</h3>
                                 <input
                                     type="text"
                                     placeholder="Organization Name *"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
-                                <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <select value={industry} onChange={(e) => setIndustry(e.target.value)} className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                     <option>Select Industry *</option>
                                     <option>Technology</option>
                                     <option>Healthcare</option>
@@ -36,7 +80,7 @@ export default function RegisterPage() {
                                     <option>Retail</option>
                                     <option>Other</option>
                                 </select>
-                                <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <select value={organizationSize} onChange={(e) => setOrganizationSize(e.target.value)} className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                     <option>Select Organization Size *</option>
                                     <option>1-10</option>
                                     <option>11-50</option>
@@ -57,21 +101,29 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Full Name *"
+                                    value={ownerName}
+                                    onChange={(e) => setOwnerName(e.target.value)}
                                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                                 <input
                                     type="email"
                                     placeholder="Email Address *"
+                                    value={ownerEmail}
+                                    onChange={(e) => setOwnerEmail(e.target.value)}
                                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                                 <input
                                     type="tel"
                                     placeholder="Phone Number"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
                                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                                 <input
                                     type="password"
                                     placeholder="Password *"
+                                    value={ownerPassword}
+                                    onChange={(e) => setOwnerPassword(e.target.value)}
                                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                             </div>
@@ -90,7 +142,7 @@ export default function RegisterPage() {
                                 </div>
                             </div>
 
-                            <button className="w-full bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 transition">
+                            <button type="submit" className="w-full bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 transition">
                                 Create Organization Account
                             </button>
                         </form>
