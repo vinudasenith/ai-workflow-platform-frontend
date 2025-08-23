@@ -1,4 +1,9 @@
+import { Link, useParams } from "react-router-dom";
+
 export default function AdminDashboard() {
+
+    const { tenantId } = useParams();
+
     return (
         <div className="flex min-h-screen bg-gray-100">
             {/* Sidebar */}
@@ -8,36 +13,32 @@ export default function AdminDashboard() {
                     <p className="text-sm text-gray-500">Main Admin Dashboard</p>
                 </div>
                 <nav className="mt-6 space-y-2">
-                    <a
-                        href="/overview"
+
+                    <Link to={`/admin/${tenantId}`}
                         className="block px-6 py-3 text-gray-700 hover:bg-gray-200 font-medium"
-                    >
-                        📊 Overview
-                    </a>
-                    <a
-                        href="/users"
+                    >📊 Overview
+                    </Link>
+
+                    <Link to={`/admin/${tenantId}/users`}
                         className="block px-6 py-3 text-gray-700 hover:bg-gray-200 font-medium"
-                    >
-                        👥 Users
-                    </a>
-                    <a
-                        href="/reports"
+                    >👥 Users
+                    </Link>
+
+                    <Link to={`/admin/${tenantId}/reports`}
                         className="block px-6 py-3 text-gray-700 hover:bg-gray-200 font-medium"
-                    >
-                        📑 Reports
-                    </a>
-                    <a
-                        href="/settings"
+                    >📑 Reports
+                    </Link>
+
+                    <Link to={`/admin/${tenantId}/settings`}
                         className="block px-6 py-3 text-gray-700 hover:bg-gray-200 font-medium"
-                    >
-                        ⚙️ Settings
-                    </a>
-                    <a
-                        href="/"
+                    >⚙️ Settings
+                    </Link>
+
+                    <Link to={`/admin/${tenantId}/logout`}
                         className="block px-6 py-3 text-red-600 hover:bg-red-100 font-medium"
-                    >
-                        🚪 Logout
-                    </a>
+                    >🚪 Logout
+                    </Link>
+
                 </nav>
             </aside>
         </div>
