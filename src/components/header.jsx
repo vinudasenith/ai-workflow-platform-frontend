@@ -12,7 +12,7 @@ export default function Header() {
                     {/* Center Nav Links */}
                     <nav className="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
                         <a href="/" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-                        <a href="/features" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">Features</a>
+                        <a href="/feature" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">Features</a>
                         <a href="/about" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">About</a>
                     </nav>
 
