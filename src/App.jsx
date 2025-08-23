@@ -10,6 +10,11 @@ import Header from './components/header';
 import Home from './pages/home/home';
 import Features from './pages/home/feature';
 import About from './pages/home/about';
+import SuperAdmin from './pages/super-admin-dashboard/superAdminDashboard';
+import AdminUsersManagment from './pages/admin-dashboard/adminUsersManagment';
+import AdminDepartment from './pages/dashboard/departmentAdmin';
+import DepartmentManagment from './pages/department-admin-dashboard/departmentManagment';
+
 
 
 function AppWrapper() {
@@ -31,7 +36,14 @@ function AppWrapper() {
         <Route path="/about" element={<About />}></Route>
 
         <Route path="/dashboard/:tenantId" element={<Dashboard />}></Route>
-        <Route path="/admin/dashboard" element={<AdminDashboard />}></Route>
+        <Route path="/dashboard/:tenantId/departmentAdmin" element={<AdminDepartment />}></Route>
+        <Route path="/dashboard/:tenantId/departmentAdmin/departmentManagment" element={<DepartmentManagment />}></Route>
+
+
+        <Route path="/admin/:tenantId" element={<AdminDashboard />}></Route>
+        <Route path="/admin/:tenantId/users" element={<AdminUsersManagment />}></Route>
+
+        <Route path="/superadmin" element={<SuperAdmin />}></Route>
       </Routes>
     </>
 
