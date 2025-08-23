@@ -1,4 +1,29 @@
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { toast } from "react-hot-toast"
+
 export default function Dashboard() {
+
+    const navigate = useNavigate();
+    const [role, setRole] = useState(null);
+    const [tenantId, setTenantId] = useState(null);
+
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+        const tenantId = localStorage.getItem("tenantId");
+        setRole(role);
+        setTenantId(tenantId);
+    }, [])
+
+    const handleNavigation = (targetRole) => {
+        if (role === targetRole && tenantId) {
+            navigate(`/dashboard/${tenantId}/${targetRole}`);
+        } else {
+            toast.error("You don’t have access to this section.");
+        }
+    }
+
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             <div className="container mx-auto px-6 py-12 max-w-7xl">
@@ -26,7 +51,8 @@ export default function Dashboard() {
                             <p className="text-slate-600 mb-6 leading-relaxed">
                                 Manage department workflows and team members with specialized tools and insights.
                             </p>
-                            <button className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
+                            <button
+                                onClick={() => handleNavigation("DepartmentAdmin")} className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
                                 Access Department
                             </button>
                         </div>
@@ -43,7 +69,7 @@ export default function Dashboard() {
                             <p className="text-slate-600 mb-6 leading-relaxed">
                                 Access tasks, submit reports, and collaborate seamlessly with your team members.
                             </p>
-                            <button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-amber-600 hover:to-amber-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
+                            <button onClick={() => handleNavigation("Staff")} className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-amber-600 hover:to-amber-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
                                 Access Staff Portal
                             </button>
                         </div>
@@ -60,7 +86,7 @@ export default function Dashboard() {
                             <p className="text-slate-600 mb-6 leading-relaxed">
                                 View your personal tasks, reports, and stay updated with the latest information.
                             </p>
-                            <button className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-indigo-600 hover:to-indigo-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
+                            <button onClick={() => handleNavigation("User")} className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-indigo-600 hover:to-indigo-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
                                 Access User Portal
                             </button>
                         </div>
