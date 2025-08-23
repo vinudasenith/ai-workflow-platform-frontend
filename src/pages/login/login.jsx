@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import api from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+
 
 export default function LoginPage() {
     //state variables
     const [name, setName] = useState('')
     const [ownerEmail, setOwnerEmail] = useState('')
     const [ownerPassword, setOwnerPassword] = useState('')
+    const navigate = useNavigate();
+
 
     //handle submit for organization login
     function handleOnSubmit(e) {
@@ -17,7 +21,13 @@ export default function LoginPage() {
             ownerEmail: ownerEmail,
             ownerPassword: ownerPassword
         }).then((res) => {
+            const { tenantId } = res.data;
+
+            localStorage.setItem("tenantId", tenantId);
+
             toast.success("Organization logged in successfully");
+            navigate(`/admin/${tenantId}`);
+
         }).catch((err) => {
             toast.error("Something went wrong");
         })
