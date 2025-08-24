@@ -24,7 +24,7 @@ export default function UserRegister() {
             email: email,
             password: password
         }).then((res) => {
-            toast.success("User registered successfully");
+            toast.success("Registration successful! Please wait until an admin approves your account.");
         }).catch((err) => {
             toast.error("Something went wrong");
         })

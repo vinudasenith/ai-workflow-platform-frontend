@@ -33,7 +33,7 @@ export default function RegisterPage() {
             phoneNumber: phoneNumber
 
         }).then((res) => {
-            toast.success("Organization registered successfully");
+            toast.success("Registration successful! Please wait until an admin approves");
 
         }).catch((err) => {
             toast.error("Something went wrong");
