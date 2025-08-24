@@ -14,7 +14,8 @@ import SuperAdmin from './pages/super-admin-dashboard/superAdminDashboard';
 import AdminUsersManagment from './pages/admin-dashboard/adminUsersManagment';
 import AdminDepartment from './pages/dashboard/departmentAdmin';
 import DepartmentManagment from './pages/department-admin-dashboard/departmentManagment';
-
+import UserManagment from './pages/department-admin-dashboard/userManagment';
+import Operations from './pages/department-admin-dashboard/operation';
 
 
 function AppWrapper() {
@@ -38,6 +39,8 @@ function AppWrapper() {
         <Route path="/dashboard/:tenantId" element={<Dashboard />}></Route>
         <Route path="/dashboard/:tenantId/departmentAdmin" element={<AdminDepartment />}></Route>
         <Route path="/dashboard/:tenantId/departmentAdmin/departmentManagment" element={<DepartmentManagment />}></Route>
+        <Route path="/dashboard/:tenantId/departmentAdmin/userManagment" element={<UserManagment />}></Route>
+        <Route path="/dashboard/:tenantId/departmentAdmin/operations" element={<Operations />}></Route>
 
 
         <Route path="/admin/:tenantId" element={<AdminDashboard />}></Route>
