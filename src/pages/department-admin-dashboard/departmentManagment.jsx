@@ -16,7 +16,13 @@ export default function DepartmentManagement() {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const res = await api.get("/departments/all");
+                const token = localStorage.getItem("token");
+                const res = await api.get("/departments/tenant/all", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+
                 setDepartments(res.data);
             } catch (err) {
                 toast.error("Failed to fetch departments");
@@ -40,16 +46,23 @@ export default function DepartmentManagement() {
         }
 
         console.log(name, departmentCode, description);
+
+        const token = localStorage.getItem("token");
+
         api.post("/departments/register", {
             name: name,
             departmentCode: departmentCode,
             description: description
 
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }).then((res) => {
             toast.success("Department created successfully");
 
             //fetch departments
-            api.get("/departments/all").then(res => setDepartments(res.data));
+            api.get("/departments/tenant/all").then(res => setDepartments(res.data));
             setName('');
             setDepartmentCode('');
             setDescription('');
