@@ -19,6 +19,8 @@ import Operations from './pages/staff-dashboard/operation';
 import StaffAdmin from './pages/dashboard/staff';
 import TaskManagment from './pages/staff-dashboard/taskManagment';
 import Task from './pages/staff-dashboard/task';
+import UserDashboard from './pages/dashboard/user';
+import WorkflowTask from './pages/user-dashboard/workflowTask';
 
 
 function AppWrapper() {
@@ -42,21 +44,19 @@ function AppWrapper() {
         <Route path="/feature" element={<Features />}></Route>
         <Route path="/about" element={<About />}></Route>
 
-
-
         {/* Dashboard */}
         <Route path="/dashboard/:tenantId" element={<Dashboard />}></Route>
         <Route path="/dashboard/:tenantId/departmentAdmin" element={<AdminDepartment />}></Route>
         <Route path="/dashboard/:tenantId/staff" element={<StaffAdmin />}></Route>
-
-
+        <Route path="/dashboard/:tenantId/users" element={<  UserDashboard />}></Route>
 
         {/* Staff-Admin Dashboard */}
         <Route path="/dashboard/:tenantId/staff/taskManagment" element={<TaskManagment />}></Route>
         <Route path="/dashboard/:tenantId/staff/taskManagment/operations/tasks" element={<Task />}></Route>
         <Route path="/dashboard/:tenantId/staff/taskManagment/operations" element={<Operations />}></Route>
 
-
+        {/* User-Admin Dashboard */}
+        <Route path="/dashboard/:tenantId/users/workflows" element={<WorkflowTask />} />
 
 
         {/* Department-admin Dashboard */}
@@ -66,8 +66,6 @@ function AppWrapper() {
         {/*Oranization-admin Dashboard */}
         <Route path="/admin/:tenantId" element={<AdminDashboard />}></Route>
         <Route path="/admin/:tenantId/users" element={<AdminUsersManagment />}></Route>
-
-
 
         {/* Super-admin Dashboard */}
         <Route path="/superadmin" element={<SuperAdmin />}></Route>
