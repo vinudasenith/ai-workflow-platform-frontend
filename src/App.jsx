@@ -21,6 +21,7 @@ import TaskManagment from './pages/staff-dashboard/taskManagment';
 import Task from './pages/staff-dashboard/task';
 import UserDashboard from './pages/dashboard/user';
 import WorkflowTask from './pages/user-dashboard/workflowTask';
+import OrganizationManagment from './pages/super-admin-dashboard/organizationManagment';
 
 
 function AppWrapper() {
@@ -69,6 +70,8 @@ function AppWrapper() {
 
         {/* Super-admin Dashboard */}
         <Route path="/superadmin" element={<SuperAdmin />}></Route>
+        <Route path="/superadmin/organizations" element={<OrganizationManagment />}></Route>
+
       </Routes>
     </>
 
