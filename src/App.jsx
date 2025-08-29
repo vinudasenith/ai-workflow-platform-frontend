@@ -22,6 +22,8 @@ import Task from './pages/staff-dashboard/task';
 import UserDashboard from './pages/dashboard/user';
 import WorkflowTask from './pages/user-dashboard/workflowTask';
 import OrganizationManagment from './pages/super-admin-dashboard/organizationManagment';
+import AccountSetting from './pages/super-admin-dashboard/setting';
+import SuperAdminLogin from './pages/login/superAdminLogin';
 
 
 function AppWrapper() {
@@ -38,6 +40,7 @@ function AppWrapper() {
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/ulogin" element={<UserLogin />}></Route>
+        <Route path="/alogin" element={<SuperAdminLogin />}></Route>
         <Route path="/uregister" element={<UserRegister />}></Route>
 
         {/* Home */}
@@ -71,6 +74,7 @@ function AppWrapper() {
         {/* Super-admin Dashboard */}
         <Route path="/superadmin" element={<SuperAdmin />}></Route>
         <Route path="/superadmin/organizations" element={<OrganizationManagment />}></Route>
+        <Route path="/superadmin/setting" element={<AccountSetting />}></Route>
 
       </Routes>
     </>
