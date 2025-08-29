@@ -43,7 +43,7 @@ export default function SuperAdmin() {
                     <a href="/superadmin" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Dashboard</a>
                     <a href="/superadmin/organizations" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Organizations</a>
                     <a href="/users" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Users</a>
-                    <a href="/settings" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Settings</a>
+                    <a href="superadmin/setting" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Account Settings</a>
                     <a href="/auditLogs" className="block px-4 py-2 rounded-lg hover:bg-yellow-500">Audit Logs</a>
                 </nav>
             </aside>
