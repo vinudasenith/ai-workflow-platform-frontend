@@ -39,7 +39,7 @@ export default function AccountSetting() {
     }
 
     return (
-        <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8 mt-12 border border-gray-200">
+        <div className="h-[800px] max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8 mt-12 border border-gray-200">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
                 <div>
@@ -52,6 +52,16 @@ export default function AccountSetting() {
 
             {/* Details */}
             <div className="space-y-6">
+                <div>
+                    {/* Default Profile Photo */}
+                    <img
+                        src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Photos.png"
+                        alt="Profile"
+                        className="w-20 h-20 rounded-full border-2 border-blue-500 shadow-md"
+                    />
+                </div>
+
+
                 {/* Full Name */}
                 <div>
                     <label className="block text-sm font-semibold text-gray-700">Full Name</label>
