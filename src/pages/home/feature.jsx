@@ -91,13 +91,13 @@ export default function Features() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a
-                                href="/demo"
+                                href="#"
                                 className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-300"
                             >
                                 Request a Demo
                             </a>
                             <a
-                                href="/docs"
+                                href="#"
                                 className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-300"
                             >
                                 View Documentation

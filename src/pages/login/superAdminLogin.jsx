@@ -19,8 +19,9 @@ export default function SuperAdminLogin() {
         }).then((res) => {
             toast.success("User logged in successfully");
 
-            // Set token, tenantId, and role in localStorage
-            const { token, tenantId, role } = res.data
+            // Set token, tenantId and role in localStorage
+            const { token, tenantId, role, user } = res.data
+
             localStorage.setItem("token", token)
             localStorage.setItem("tenantId", tenantId)
             localStorage.setItem("role", role)

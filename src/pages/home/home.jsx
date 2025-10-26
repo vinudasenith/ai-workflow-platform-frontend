@@ -8,7 +8,7 @@ export default function Home() {
                             <h2 className="text-4xl md:text-5xl font-bold mb-6">Streamline Your Organization's Workflow</h2>
                             <p className="text-xl mb-8 text-indigo-100">A powerful multi-tenant platform designed to manage organizations, departments, and users with seamless efficiency.</p>
                             <div className="flex space-x-4">
-                                <a href="#" className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">Get Started - Register Organization</a>
+                                <a href="/register" className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">Get Started - Register Organization</a>
                                 <a href="#" className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:bg-opacity-10 transition-colors">Learn More</a>
                             </div>
                         </div>
@@ -208,7 +208,7 @@ export default function Home() {
                         <div className="flex-1">
                             <div className="bg-white p-6 rounded-xl shadow-sm h-full">
                                 <div className="text-5xl text-indigo-100 font-bold mb-4">03</div>
-                                <h3 className="text-xl font-semibold mb-4">User Management</h3>
+                                <h3 className="text-xl font-semibold mb-4">Staff Management</h3>
                                 <p className="text-gray-600 mb-4">
                                     Add team members and users with appropriate role-based access.
                                 </p>
@@ -252,7 +252,7 @@ export default function Home() {
                             Get Started
                         </a>
                         <a
-                            href="/feature"
+                            href="#"
                             className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:bg-opacity-10 transition-colors"
                         >
                             Learn More

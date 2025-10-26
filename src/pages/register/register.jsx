@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import api from "../../api/axios";
 export default function RegisterPage() {
@@ -10,6 +11,7 @@ export default function RegisterPage() {
     const [ownerEmail, setOwnerEmail] = useState('');
     const [ownerPassword, setOwnerPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const navigate = useNavigate();
 
 
     //handle submit for organization registration
@@ -34,6 +36,7 @@ export default function RegisterPage() {
 
         }).then((res) => {
             toast.success("Registration successful! Please wait until an admin approves");
+            navigate("/login");
 
         }).catch((err) => {
             toast.error("Something went wrong");
@@ -42,9 +45,17 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+        <div
+            className="min-h-screen bg-cover bg-center py-12 px-4"
+            style={{
+                backgroundImage:
+                    "url('')",
+            }}
+        >
             <div className="max-w-5xl mx-auto">
+
                 {/* Header */}
+
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">Join Our Platform</h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -53,7 +64,9 @@ export default function RegisterPage() {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8 items-start">
+
                     {/* Registration Form */}
+
                     <div className="bg-white shadow-lg rounded-xl p-6">
                         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Organization Registration</h2>
                         <p className="text-gray-600 mb-6">
@@ -61,7 +74,9 @@ export default function RegisterPage() {
                         </p>
 
                         <form onSubmit={handleOnSubmit} className="space-y-6">
+
                             {/* Organization Details */}
+
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-gray-800">Organization Details</h3>
                                 <input
@@ -96,6 +111,7 @@ export default function RegisterPage() {
                             </div>
 
                             {/* Primary Contact */}
+
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-gray-800">Primary Contact</h3>
                                 <input
@@ -129,6 +145,7 @@ export default function RegisterPage() {
                             </div>
 
                             {/* Terms */}
+
                             <div className="space-y-4">
                                 <div className="flex items-center space-x-2">
                                     <input type="checkbox" className="mt-1" />
@@ -150,6 +167,7 @@ export default function RegisterPage() {
 
 
                     {/* Benefits Section */}
+
                     <div className="space-y-6">
                         <div className="bg-blue-50 border border-blue-100 rounded-xl p-6">
                             <h3 className="text-xl font-semibold text-blue-700 mb-4">Why Choose Our Platform?</h3>

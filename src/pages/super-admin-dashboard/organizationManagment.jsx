@@ -87,7 +87,7 @@ export default function OrganizationManagment() {
                                         Organization Size
                                     </th>
                                     <th className="px-6 py-3 text-sm font-semibold text-gray-700">
-                                        Name
+                                        Owner Name
                                     </th>
                                     <th className="px-6 py-3 text-sm font-semibold text-gray-700">
                                         Owner Email
@@ -95,9 +95,7 @@ export default function OrganizationManagment() {
                                     <th className="px-6 py-3 text-sm font-semibold text-gray-700">
                                         Phone Number
                                     </th>
-                                    <th className="px-6 py-3 text-sm font-semibold text-gray-700">
-                                        Status
-                                    </th>
+                                    <th className="px-6 py-3 text-sm font-semibold text-gray-700">Status</th>
                                     <th className="px-6 py-3 text-sm font-semibold text-gray-700">
                                         Action
                                     </th>
@@ -117,7 +115,6 @@ export default function OrganizationManagment() {
                                         <td className="px-6 py-4 text-gray-700">{org.ownerName}</td>
                                         <td className="px-6 py-4 text-gray-700">{org.ownerEmail}</td>
                                         <td className="px-6 py-4 text-gray-700">{org.phoneNumber}</td>
-                                        <td className="px-6 py-4 text-gray-700">{org.approved}</td>
                                         <td className="px-6 py-4">
                                             {org.approved === true ? (
                                                 <span className="px-2 py-1 text-xs rounded-lg bg-green-100 text-green-700">

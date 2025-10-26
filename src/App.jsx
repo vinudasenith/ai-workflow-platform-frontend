@@ -22,8 +22,12 @@ import Task from './pages/staff-dashboard/task';
 import UserDashboard from './pages/dashboard/user';
 import WorkflowTask from './pages/user-dashboard/workflowTask';
 import OrganizationManagment from './pages/super-admin-dashboard/organizationManagment';
-import AccountSetting from './pages/super-admin-dashboard/setting';
 import SuperAdminLogin from './pages/login/superAdminLogin';
+import AccountSettingStaff from './pages/staff-dashboard/setting';
+import AccountSettingUser from './pages/user-dashboard/setting';
+import AccountSettingDepartment from './pages/department-admin-dashboard/setting';
+import AccountSettingSuperAdmin from './pages/super-admin-dashboard/setting';
+import StaffUserManagment from './pages/staff-dashboard/staffUserManagment';
 
 
 function AppWrapper() {
@@ -58,14 +62,20 @@ function AppWrapper() {
         <Route path="/dashboard/:tenantId/staff/taskManagment" element={<TaskManagment />}></Route>
         <Route path="/dashboard/:tenantId/staff/taskManagment/operations/tasks" element={<Task />}></Route>
         <Route path="/dashboard/:tenantId/staff/taskManagment/operations" element={<Operations />}></Route>
+        <Route path="/dashboard/:tenantId/staff/settings" element={<AccountSettingStaff />}></Route>
+        <Route path="/dashboard/:tenantId/staff/staffUserManagment" element={<StaffUserManagment />} />
 
-        {/* User-Admin Dashboard */}
+
+        {/* User Dashboard */}
         <Route path="/dashboard/:tenantId/users/workflows" element={<WorkflowTask />} />
+        <Route path="/dashboard/:tenantId/users/profile" element={<AccountSettingUser />} />
+
 
 
         {/* Department-admin Dashboard */}
         <Route path="/dashboard/:tenantId/departmentAdmin/departmentManagment" element={<DepartmentManagment />}></Route>
         <Route path="/dashboard/:tenantId/departmentAdmin/userManagment" element={<UserManagment />}></Route>
+        <Route path="/dashboard/:tenantId/departmentAdmin/settings" element={<AccountSettingDepartment />}></Route>
 
         {/*Oranization-admin Dashboard */}
         <Route path="/admin/:tenantId" element={<AdminDashboard />}></Route>
@@ -74,7 +84,7 @@ function AppWrapper() {
         {/* Super-admin Dashboard */}
         <Route path="/superadmin" element={<SuperAdmin />}></Route>
         <Route path="/superadmin/organizations" element={<OrganizationManagment />}></Route>
-        <Route path="/superadmin/setting" element={<AccountSetting />}></Route>
+        <Route path="/superadmin/setting" element={<AccountSettingSuperAdmin />}></Route>
 
       </Routes>
     </>

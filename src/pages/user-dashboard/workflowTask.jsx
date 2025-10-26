@@ -81,28 +81,6 @@ export default function WorkflowTask() {
                             <div className="w-2/3">
                                 <h2 className="text-lg font-semibold text-gray-800">{task.name}</h2>
                                 <p className="text-gray-600 mb-2">{task.description || "No description"}</p>
-
-                                {task.fileUrls && task.fileUrls.length > 0 && (
-                                    <div className="mt-2">
-                                        <h3 className="text-sm font-medium text-gray-700 mb-1">
-                                            Uploaded Files:
-                                        </h3>
-                                        <ul className="list-disc list-inside text-sm text-gray-600">
-                                            {task.fileUrls.map((url, idx) => (
-                                                <li key={`${task._id || task.id}-file-${idx}`}>
-                                                    <a
-                                                        href={`http://localhost:7070/${url}`}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                        className="text-indigo-600 hover:underline"
-                                                    >
-                                                        {url.split("\\").pop()}
-                                                    </a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
                             </div>
 
                             {/* Upload File */}

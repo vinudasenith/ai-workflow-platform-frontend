@@ -1,4 +1,7 @@
+import { Link, useParams } from "react-router-dom";
 export default function StaffAdmin() {
+    const { tenantId } = useParams();
+
     return (
         <div className="min-h-screen bg-gray-50 flex">
             {/* Sidebar */}
@@ -8,13 +11,13 @@ export default function StaffAdmin() {
                 </div>
                 <nav className="p-4 space-y-2">
 
-                    <a href="/dashboard/:tenantId/staff/taskManagment" className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Task Management</a>
+                    <Link to={`/dashboard/${tenantId}/staff/taskManagment`} className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Task Management</Link>
 
-                    <a href="/dashboard/:tenantId/staff/userManagment" className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">User Management</a>
+                    <Link to={`/dashboard/${tenantId}/staff/staffUserManagment`} className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">User Management</Link>
 
-                    <a href="/dashboard/:tenantId/staff/notification" className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Communication & Notifications</a>
+                    <Link to={`/dashboard/${tenantId}/staff/notification`} className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Communication & Notifications</Link>
 
-                    <a href="/dashboard/:tenantId/staff/settings" className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Settings</a>
+                    <Link to={`/dashboard/${tenantId}/staff/settings`} className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium">Settings</Link>
 
                 </nav>
             </aside>

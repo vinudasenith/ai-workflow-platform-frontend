@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-hot-toast"
 import api from "../../api/axios"
 
@@ -11,6 +12,7 @@ export default function UserRegister() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     //handle submit for user registration
     const handleOnSubmit = (e) => {
@@ -25,6 +27,8 @@ export default function UserRegister() {
             password: password
         }).then((res) => {
             toast.success("Registration successful! Please wait until an admin approves your account.");
+            navigate("/ulogin");
+
         }).catch((err) => {
             toast.error("Something went wrong");
         })
@@ -42,6 +46,7 @@ export default function UserRegister() {
 
                 <div className="bg-white py-8 px-6 shadow-lg sm:rounded-lg sm:px-10 border border-gray-200">
                     <form onSubmit={handleOnSubmit} className="space-y-6">
+
                         {/* Organization Selection */}
                         <div>
                             <label htmlFor="organization" className="block text-sm font-medium text-gray-700">
@@ -70,7 +75,7 @@ export default function UserRegister() {
                                 onChange={(e) => setRole(e.target.value)}
                             >
                                 <option value="">Select Role</option>
-                                <option value="User">User</option>
+                                <option value="Users">User</option>
                                 <option value="Staff">Staff</option>
                                 <option value="DepartmentAdmin">Department Head</option>
                             </select>

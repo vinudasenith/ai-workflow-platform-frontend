@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 
-export default function AccountSettingSuperAdmin() {
+export default function AccountSettingDepartment() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 

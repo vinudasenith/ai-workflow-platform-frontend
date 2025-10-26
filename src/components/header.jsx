@@ -17,7 +17,7 @@ export default function Header() {
                     </nav>
 
                     {/*  Register */}
-                    <div className="flex space-x-3 -mr-40">
+                    <div className="flex space-x-3 items-center">
 
                         {/* Login Dropdown */}
                         <div className="relative group">
@@ -51,6 +51,7 @@ export default function Header() {
                                         </span>
                                         <div>
                                             <div className="font-medium">User</div>
+                                            <div className="text-xs text-gray-500 mt-1">Limited access</div>
                                         </div>
                                     </a>
                                     <a href="/alogin" className=" px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-150 flex items-center">
@@ -61,6 +62,7 @@ export default function Header() {
                                         </span>
                                         <div>
                                             <div className="font-medium">Super admin</div>
+                                            <div className="text-xs text-gray-500 mt-1">Manage admins & users</div>
                                         </div>
                                     </a>
 
@@ -88,7 +90,7 @@ export default function Header() {
                                         </span>
                                         <div>
                                             <div className="font-medium">Register Organization</div>
-                                            <div className="text-xs text-gray-500 mt-1">Only SuperAdmin/OrgAdmin can create</div>
+                                            <div className="text-xs text-gray-500 mt-1">Only OrgAdmin can create</div>
                                         </div>
                                     </a>
 

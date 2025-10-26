@@ -32,7 +32,7 @@ export default function Dashboard() {
                     <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
                         Organization Dashboard
                     </h1>
-                    <p className="text-slate-600 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-600 text-lg font-medium max-w-2xl mx-auto leading-relaxed mt-4">
                         Welcome to your command center. Select your role to access the corresponding section and manage your
                         responsibilities.
                     </p>
@@ -86,7 +86,7 @@ export default function Dashboard() {
                             <p className="text-slate-600 mb-6 leading-relaxed">
                                 View your personal tasks, reports, and stay updated with the latest information.
                             </p>
-                            <button onClick={() => handleNavigation("User")} className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-indigo-600 hover:to-indigo-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
+                            <button onClick={() => handleNavigation("Users")} className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-indigo-600 hover:to-indigo-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg mt-6">
                                 Access User Portal
                             </button>
                         </div>
