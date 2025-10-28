@@ -33,7 +33,6 @@ export default function RegisterPage() {
                     ownerName,
                     ownerEmail,
                     ownerPassword,
-                    phoneNumber
                 }
             });
 
@@ -51,9 +50,6 @@ export default function RegisterPage() {
             statusObj.ownerEmail = corrected.ownerEmail && corrected.ownerEmail !== ownerEmail ? "corrected" : "valid";
             statusObj.ownerPassword = corrected.ownerPassword && corrected.ownerPassword !== ownerPassword ? "corrected" : "valid";
 
-            const phoneWarn = warningsList.some(w => w.toLowerCase().includes("phone"));
-            statusObj.phoneNumber = phoneWarn ? "invalid" : "valid";
-
             // Apply corrected values
             setName(corrected.organizationName || name);
             setDescription(corrected.description || description);
@@ -64,7 +60,8 @@ export default function RegisterPage() {
             setOwnerPassword(corrected.ownerPassword || ownerPassword);
 
             setWarnings(statusObj);
-            return statusObj;
+
+            return { statusObj, correctedFields: corrected };
 
 
         } catch (error) {
@@ -95,6 +92,14 @@ export default function RegisterPage() {
         const warningResult = await validateAI();
         toast.dismiss();
 
+        // if AI validation fails
+        if (!warningResult) {
+            toast.error("AI validation failed. Please try again.");
+            setLoading(false);
+            return;
+        }
+
+        const { statusObj, correctedFields } = warningResult;
 
         // stop registration
         const hasInvalid = warningResult && Object.keys(warningResult).some(
@@ -107,20 +112,38 @@ export default function RegisterPage() {
             return;
         }
 
+        const finalName = warningResult.correctedFields.organizationName || name;
+        const finalIndustry = warningResult.correctedFields.industry || industry;
+        const finalOrgSize = warningResult.correctedFields.organizationSize || organizationSize;
+        const finalDescription = warningResult.correctedFields.description || description;
+        const finalOwnerName = warningResult.correctedFields.ownerName || ownerName;
+        const finalOwnerEmail = warningResult.correctedFields.ownerEmail || ownerEmail;
+        const finalOwnerPassword = warningResult.correctedFields.ownerPassword || ownerPassword;
+
 
         //validation for making all fields required
-        if (!name || !industry || !organizationSize || !ownerName || !ownerEmail || !ownerPassword || !phoneNumber) {
+        if (!finalName || !finalIndustry || !finalOrgSize || !finalOwnerName || !finalOwnerEmail || !finalOwnerPassword || !phoneNumber) {
             toast.error("All fields are required");
             return;
         }
 
+        // Update state so UI shows corrected values
+        setName(finalName);
+        setIndustry(finalIndustry);
+        setOrganizationSize(finalOrgSize);
+        setDescription(finalDescription);
+        setOwnerName(finalOwnerName);
+        setOwnerEmail(finalOwnerEmail);
+        setOwnerPassword(finalOwnerPassword);
+
         api.post("/organizations/register", {
-            name: name,
-            industry: industry,
-            organizationSize: organizationSize,
-            ownerName: ownerName,
-            ownerEmail: ownerEmail,
-            ownerPassword: ownerPassword,
+            name: finalName,
+            industry: finalIndustry,
+            organizationSize: finalOrgSize,
+            description: finalDescription,
+            ownerName: finalOwnerName,
+            ownerEmail: finalOwnerEmail,
+            ownerPassword: finalOwnerPassword,
             phoneNumber: phoneNumber
 
         }).then((res) => {
